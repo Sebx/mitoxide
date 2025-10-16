@@ -4,8 +4,12 @@ version = "0.1.0"
 edition = "2021"
 rust-version = "1.82"
 description = "SSH transport layer for Mitoxide"
-license = "MIT OR Apache-2.0"
-repository = "https://github.com/example/mitoxide"
+license = "MIT"
+repository = "https://github.com/yourusername/mitoxide"
+homepage = "https://github.com/yourusername/mitoxide"
+documentation = "https://docs.rs/mitoxide-ssh"
+keywords = ["ssh", "transport", "remote"]
+categories = ["network-programming"]
 
 [features]
 default = ["ssh2"]
@@ -22,7 +26,7 @@ async-trait = { workspace = true }
 bytes = { workspace = true }
 
 # Local crates
-mitoxide-proto = { path = "../mitoxide-proto" }
+mitoxide-proto = { version = "0.1.0", path = "../mitoxide-proto" }
 
 # SSH implementations
 ssh2 = { workspace = true, optional = true }

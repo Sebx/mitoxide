@@ -4,8 +4,12 @@ version = "0.1.0"
 edition = "2021"
 rust-version = "1.82"
 description = "Protocol definitions and codec for Mitoxide"
-license = "MIT OR Apache-2.0"
-repository = "https://github.com/example/mitoxide"
+license = "MIT"
+repository = "https://github.com/yourusername/mitoxide"
+homepage = "https://github.com/yourusername/mitoxide"
+documentation = "https://docs.rs/mitoxide-proto"
+keywords = ["protocol", "rpc", "serialization"]
+categories = ["network-programming", "encoding"]
 
 [features]
 default = ["rmp-serde"]

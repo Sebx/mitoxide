@@ -4,8 +4,12 @@ version = "0.1.0"
 edition = "2021"
 rust-version = "1.82"
 description = "Remote agent binary for Mitoxide"
-license = "MIT OR Apache-2.0"
-repository = "https://github.com/example/mitoxide"
+license = "MIT"
+repository = "https://github.com/yourusername/mitoxide"
+homepage = "https://github.com/yourusername/mitoxide"
+documentation = "https://docs.rs/mitoxide-agent"
+keywords = ["agent", "remote", "automation"]
+categories = ["command-line-utilities"]
 
 [[bin]]
 name = "mitoxide-agent"
@@ -32,8 +36,8 @@ rmp-serde = { workspace = true }
 uuid = { workspace = true }
 
 # Local crates
-mitoxide-proto = { path = "../mitoxide-proto" }
-mitoxide-wasm = { path = "../mitoxide-wasm" }
+mitoxide-proto = { version = "0.1.0", path = "../mitoxide-proto" }
+mitoxide-wasm = { version = "0.1.0", path = "../mitoxide-wasm" }
 
 # Additional dependencies
 serde_json = "1.0"

@@ -4,8 +4,10 @@ version = "0.1.0"
 edition = "2021"
 rust-version = "1.82"
 description = "Rust library for remote execution and automation inspired by Mitogen"
-license = "MIT OR Apache-2.0"
-repository = "https://github.com/example/mitoxide"
+license = "MIT"
+repository = "https://github.com/yourusername/mitoxide"
+homepage = "https://github.com/yourusername/mitoxide"
+documentation = "https://docs.rs/mitoxide"
 keywords = ["ssh", "remote", "automation", "rpc"]
 categories = ["network-programming", "command-line-utilities"]
 
@@ -32,9 +34,9 @@ rmp-serde = { workspace = true }
 serde_json = { workspace = true }
 
 # Local crates
-mitoxide-proto = { path = "../mitoxide-proto" }
-mitoxide-ssh = { path = "../mitoxide-ssh" }
-mitoxide-wasm = { path = "../mitoxide-wasm", optional = true }
+mitoxide-proto = { version = "0.1.0", path = "../mitoxide-proto" }
+mitoxide-ssh = { version = "0.1.0", path = "../mitoxide-ssh" }
+mitoxide-wasm = { version = "0.1.0", path = "../mitoxide-wasm", optional = true }
 
 # Optional dependencies
 ssh2 = { workspace = true, optional = true }
