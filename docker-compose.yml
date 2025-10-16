@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  # Alpine container with read-only filesystem for constraint testing
+  alpine_ro:
+    build:
+      context: .
+      dockerfile: docker/alpine_ro.Dockerfile
+    container_name: mitoxide_alpine_ro
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,noexec,nosuid,nodev
+      - /run:size=16m,noexec,nosuid,nodev
+    mem_limit: 64m
+    mem_reservation: 32m
+    cpus: 0.5
+    networks:
+      - mitoxide_test
+    volumes:
+      - ./docker/ssh_keys:/etc/ssh/keys:ro
+    environment:
+      - SSH_AUTHORIZED_KEYS_FILE=/etc/ssh/keys/test_key.pub
+    ports:
+      - "2222:22"
+
+  # Ubuntu minimal container with SSH server
+  ubuntu_min:
+    build:
+      context: .
+      dockerfile: docker/ubuntu_min.Dockerfile
+    container_name: mitoxide_ubuntu_min
+    networks:
+      - mitoxide_test
+    volumes:
+      - ./docker/ssh_keys:/etc/ssh/keys:ro
+    environment:
+      - SSH_AUTHORIZED_KEYS_FILE=/etc/ssh/keys/test_key.pub
+    ports:
+      - "2223:22"
+
+  # Bastion host for jump host testing
+  bastion:
+    build:
+      context: .
+      dockerfile: docker/bastion.Dockerfile
+    container_name: mitoxide_bastion
+    networks:
+      - mitoxide_frontend
+      - mitoxide_backend
+    volumes:
+      - ./docker/ssh_keys:/etc/ssh/keys:ro
+    environment:
+      - SSH_AUTHORIZED_KEYS_FILE=/etc/ssh/keys/test_key.pub
+    ports:
+      - "2224:22"
+
+  # Backend target accessible only through bastion
+  backend_target:
+    build:
+      context: .
+      dockerfile: docker/ubuntu_min.Dockerfile
+    container_name: mitoxide_backend_target
+    networks:
+      - mitoxide_backend
+    volumes:
+      - ./docker/ssh_keys:/etc/ssh/keys:ro
+    environment:
+      - SSH_AUTHORIZED_KEYS_FILE=/etc/ssh/keys/test_key.pub
+    # No external port mapping - only accessible through bastion
+
+networks:
+  mitoxide_test:
+    driver: bridge
+  mitoxide_frontend:
+    driver: bridge
+  mitoxide_backend:
+    driver: bridge
+    internal: true  # Backend network is isolated

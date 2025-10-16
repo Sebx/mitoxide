@@ -1,0 +1,35 @@
+[package]
+name = "mitoxide-ssh"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.82"
+description = "SSH transport layer for Mitoxide"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/example/mitoxide"
+
+[features]
+default = ["ssh2"]
+ssh2 = ["dep:ssh2"]
+openssh = []
+
+[dependencies]
+# Workspace dependencies
+tokio = { workspace = true, features = ["process", "io-util"] }
+serde = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+async-trait = { workspace = true }
+bytes = { workspace = true }
+
+# Local crates
+mitoxide-proto = { path = "../mitoxide-proto" }
+
+# SSH implementations
+ssh2 = { workspace = true, optional = true }
+
+# Additional dependencies
+tokio-util = "0.7"
+uuid = { workspace = true, features = ["v4"] }
+
+[dev-dependencies]
+tokio-test = "0.4"

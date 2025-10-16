@@ -1,0 +1,52 @@
+[package]
+name = "mitoxide"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.82"
+description = "Rust library for remote execution and automation inspired by Mitogen"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/example/mitoxide"
+keywords = ["ssh", "remote", "automation", "rpc"]
+categories = ["network-programming", "command-line-utilities"]
+
+[features]
+default = ["ssh2"]
+ssh2 = ["dep:ssh2", "mitoxide-ssh/ssh2"]
+openssh = ["mitoxide-ssh/openssh"]
+wasm = ["dep:wasmtime", "dep:wasmtime-wasi", "mitoxide-wasm"]
+sudo = []
+docker = []
+k8s = []
+lxc = []
+
+[dependencies]
+# Workspace dependencies
+tokio = { workspace = true }
+serde = { workspace = true }
+thiserror = { workspace = true }
+tracing = { workspace = true }
+async-trait = { workspace = true }
+bytes = { workspace = true }
+uuid = { workspace = true }
+rmp-serde = { workspace = true }
+serde_json = { workspace = true }
+
+# Local crates
+mitoxide-proto = { path = "../mitoxide-proto" }
+mitoxide-ssh = { path = "../mitoxide-ssh" }
+mitoxide-wasm = { path = "../mitoxide-wasm", optional = true }
+
+# Optional dependencies
+ssh2 = { workspace = true, optional = true }
+wasmtime = { workspace = true, optional = true }
+wasmtime-wasi = { workspace = true, optional = true }
+
+[dev-dependencies]
+proptest = { workspace = true }
+criterion = { workspace = true }
+tokio-test = "0.4"
+anyhow = { workspace = true }
+tempfile = { workspace = true }
+rand = { workspace = true }
+futures = "0.3"
+base64 = "0.21"

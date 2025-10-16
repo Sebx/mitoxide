@@ -1,0 +1,31 @@
+[package]
+name = "mitoxide-proto"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.82"
+description = "Protocol definitions and codec for Mitoxide"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/example/mitoxide"
+
+[features]
+default = ["rmp-serde"]
+rmp-serde = ["dep:rmp-serde"]
+bincode = ["dep:bincode"]
+
+[dependencies]
+# Workspace dependencies
+serde = { workspace = true }
+thiserror = { workspace = true }
+bytes = { workspace = true, features = ["serde"] }
+tokio = { workspace = true, features = ["io-util"] }
+
+# Serialization backends
+rmp-serde = { workspace = true, optional = true }
+bincode = { workspace = true, optional = true }
+
+# Additional dependencies
+uuid = { version = "1.0", features = ["v4", "serde"] }
+
+[dev-dependencies]
+proptest = { workspace = true }
+tokio-test = "0.4"

@@ -1,0 +1,43 @@
+[package]
+name = "mitoxide-agent"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.82"
+description = "Remote agent binary for Mitoxide"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/example/mitoxide"
+
+[[bin]]
+name = "mitoxide-agent"
+path = "src/main.rs"
+
+[features]
+default = ["wasm"]
+wasm = []
+sudo = []
+docker = []
+k8s = []
+lxc = []
+
+[dependencies]
+# Workspace dependencies
+tokio = { workspace = true }
+serde = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+async-trait = { workspace = true }
+bytes = { workspace = true }
+rmp-serde = { workspace = true }
+uuid = { workspace = true }
+
+# Local crates
+mitoxide-proto = { path = "../mitoxide-proto" }
+mitoxide-wasm = { path = "../mitoxide-wasm" }
+
+# Additional dependencies
+serde_json = "1.0"
+
+[dev-dependencies]
+tokio-test = "0.4"
+tempfile = "3.0"

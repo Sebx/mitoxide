@@ -1,0 +1,39 @@
+# Rust build artifacts
+target/
+Cargo.lock
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Documentation
+*.md
+!docker/README.md
+
+# Test artifacts
+tests/
+benches/
+
+# CI/CD
+.github/
+
+# Kiro
+.kiro/
+
+# Keep only what's needed for Docker builds
+!docker/
+!Cargo.toml
+!rust-toolchain.toml

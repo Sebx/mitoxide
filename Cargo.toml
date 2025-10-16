@@ -1,0 +1,55 @@
+[workspace]
+members = [
+    "crates/mitoxide",
+    "crates/mitoxide-agent", 
+    "crates/mitoxide-proto",
+    "crates/mitoxide-ssh",
+    "crates/mitoxide-wasm"
+]
+resolver = "2"
+
+[workspace.dependencies]
+# Async runtime
+tokio = { version = "1.0", features = ["full"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+rmp-serde = "1.1"
+bincode = "1.3"
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Logging and tracing
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Async traits
+async-trait = "0.1"
+
+# Bytes handling
+bytes = { version = "1.0", features = ["serde"] }
+
+# SSH transport
+ssh2 = "0.9"
+
+# WASM runtime
+wasmtime = "14.0"
+wasmtime-wasi = "14.0"
+
+# UUID generation
+uuid = { version = "1.0", features = ["v4", "serde"] }
+
+# Testing
+proptest = "1.0"
+criterion = "0.5"
+tempfile = "3.0"
+rand = "0.8"
+
+
+
+[workspace.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
